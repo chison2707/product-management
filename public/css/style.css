@@ -1,0 +1,127 @@
+/* Header */
+.header {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.header .inner-logo img {
+    max-height: 50px;
+    max-width: 100%;
+}
+
+.header .inner-menu>ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.header .inner-menu>ul>li {
+    margin-left: 20px;
+}
+
+/* End Header */
+/* footer */
+.footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Container margin */
+.container.my-3 {
+    margin: 0.5rem 0;
+    /* Giảm khoảng cách tổng thể */
+}
+
+/* Title for product list */
+.box-head {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    /* Giảm khoảng cách phía dưới */
+}
+
+.inner-title {
+    font-size: 1.1rem;
+    /* Giảm kích thước tiêu đề */
+    font-weight: bold;
+    color: #333;
+}
+
+/* Product item styles */
+.product-item {
+    background-color: #f0f0f0;
+    /* Màu nền nhạt hơn */
+    padding: 0.5rem;
+    /* Giảm padding */
+    border-radius: 5px;
+    /* Giảm bo tròn các góc */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.product-item:hover {
+    transform: translateY(-3px);
+    /* Nhẹ nhàng hơn khi hover */
+}
+
+/* Image styling */
+.product-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    /* Giảm bo tròn ảnh */
+    margin-bottom: 0.25rem;
+    /* Giảm khoảng cách giữa ảnh và nội dung */
+}
+
+/* New price styling */
+.inner-price-new {
+    font-size: 1rem;
+    /* Giảm kích thước giá mới */
+    color: #e74c3c;
+    /* Đỏ nhẹ hơn */
+    font-weight: bold;
+}
+
+/* Old price styling */
+.inner-price-old {
+    font-size: 0.75rem;
+    /* Giảm kích thước giá cũ */
+    color: #aaa;
+    /* Màu xám nhạt hơn */
+    text-decoration: line-through;
+    margin-right: 6px;
+    /* Giảm khoảng cách với giá mới */
+}
+
+/* Discount styling */
+.inner-discount {
+    font-size: 0.75rem;
+    /* Giảm kích thước chữ của giảm giá */
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Add some spacing between products */
+.row .col-4.mb-3 {
+    margin-bottom: 0.5rem;
+    /* Giảm khoảng cách giữa các sản phẩm */
+}
+
+/* Optional: Adjust the h3 title of the product for better appearance */
+h3.inner-title {
+    font-size: 1rem;
+    /* Giảm kích thước tiêu đề sản phẩm */
+    color: #2c3e50;
+    /* Màu đậm hơn một chút */
+    margin-bottom: 0.5rem;
+    /* Giảm khoảng cách giữa tiêu đề và giá */
+    font-weight: 600;
+    /* Nhấn mạnh một chút */
+}
