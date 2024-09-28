@@ -3,8 +3,11 @@ include ../../mixins/filter-status.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
+include ../../mixins/alert.pug
 
 block main
+    +alert-success(5000)
+
     h1 Danh sách sản phẩm
 
     .card.mb-3
@@ -32,6 +35,7 @@ block main
                             th Hình ảnh
                             th Tiêu đề
                             th Giá
+                            th Vị trí
                             th Trạng thái
                             th Hành động
                     tbody 
@@ -51,6 +55,14 @@ block main
                                         height="70px")
                                 td #{item.title}
                                 td #{item.price}$
+                                td 
+                                    input(
+                                        type="number" 
+                                        value=item.position
+                                        style="width: 60px"
+                                        min="1"
+                                        name="position"
+                                    )
                                 td
                                     if(item.status == "active")
                                         a(
