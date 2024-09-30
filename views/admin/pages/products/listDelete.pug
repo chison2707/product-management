@@ -23,13 +23,13 @@ block main
             .card-body
             .row 
                 .col-8
-                    +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+                    //- +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
                 .col-4
                     a(
                         type="button" 
-                        class="btn btn-primary float-right"
-                        href=(`${prefixAdmin}/products/listDelete`)
-                    ) Các sản phẩm đã xóa               
+                        class="btn btn-primary float-right mb-2"
+                        href=(`${prefixAdmin}/products`)
+                    ) Quay về trang sản phẩm               
 
                 table(
                     class=" table table-hover table-sm"
@@ -37,24 +37,15 @@ block main
                 )
                     thead
                         tr
-                            th
-                                input(type="checkbox" name="checkall")
                             th STT
                             th Hình ảnh
                             th Tiêu đề
                             th Giá
-                            th Vị trí
                             th Trạng thái
                             th Hành động
                     tbody 
                         each item, index in products
                             tr
-                                td 
-                                    input(
-                                        type="checkbox"
-                                        name= "id"
-                                        value= item.id
-                                    )
                                 td #{index+1}
                                 td
                                     img(src=item.thumbnail 
@@ -63,14 +54,6 @@ block main
                                         height="70px")
                                 td #{item.title}
                                 td #{item.price}$
-                                td 
-                                    input(
-                                        type="number" 
-                                        value=item.position
-                                        style="width: 60px"
-                                        min="1"
-                                        name="position"
-                                    )
                                 td
                                     if(item.status == "active")
                                         a(
@@ -89,26 +72,30 @@ block main
                                             class="badge badge-danger"
                                         ) Dừng hoạt động
                                 td
-                                    button(class="btn btn-warning btn-sm") Sửa
+                                    button(
+                                            class="btn btn-warning btn-sm"
+                                            button-restore
+                                            data-id = item.id
+                                    ) Khôi phục
                                     button(
                                         class="btn btn-danger btn-sm ml-1"
                                         button-delete
                                         data-id = item.id
-                                    ) Xóa
+                                    ) Xóa cứng
     +pagination(pagination)
 
     form(
         action=""
         method="POST"
-        id="form-change-status"
-        data-path=`${prefixAdmin}/products/change-status`
+        id="form-restore"
+        data-path=`${prefixAdmin}/products/listDelete/restore`
     ) 
 
     form(
         action=""
         method="POST"
         id="form-delete-item"
-        data-path=`${prefixAdmin}/products/delete`
+        data-path=`${prefixAdmin}/products/listDelete/delete`
     ) 
 
-    script(src="/admin/js/product.js") 
+    script(src="/admin/js/deleteReal.js") 
