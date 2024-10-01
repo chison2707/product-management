@@ -10,4 +10,8 @@ router.get('/listDelete', controller.listDelete);
 router.delete('/listDelete/delete/:id', controller.deleteItemReal);
 router.patch('/listDelete/restore/:id', controller.restoreItem);
 
+router.get('/create', controller.create);
+router.post('/create', controller.createPost);
+
+
 module.exports = router;
