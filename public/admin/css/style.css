@@ -89,5 +89,37 @@ header .inner-logo a {
 
 /* End Show Alert */
 
+/* Image Preview */
+.image-container {
+    position: relative;
+    display: inline-block;
+}
 
-/* End Show Alert */
+.image-preview {
+    width: 150px;
+    height: auto;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.image-preview[src=""] {
+    display: none;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 16px;
+    display: none;
+}
+
+/* End Image Preview */
