@@ -5,6 +5,7 @@ const storageMulter = require("../../helpers/storageMulter");
 const upload = multer({ storage: storageMulter() });
 
 const controller = require("../../controllers/admin/product.cotroller");
+const validate = require("../../validates/admin/product.validate");
 
 router.get('/', controller.index);
 router.patch('/change-status/:status/:id', controller.changeStatus);
@@ -15,7 +16,7 @@ router.delete('/listDelete/delete/:id', controller.deleteItemReal);
 router.patch('/listDelete/restore/:id', controller.restoreItem);
 
 router.get('/create', controller.create);
-router.post('/create', upload.single('thumbnail'), controller.createPost);
+router.post('/create', upload.single('thumbnail'), validate.createPost, controller.createPost);
 
 
 module.exports = router;
