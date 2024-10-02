@@ -220,7 +220,7 @@ module.exports.edit = async (req, res) => {
         };
 
         const product = await Product.findOne(find);
-        console.log(product);
+        // console.log(product);
 
         res.render("admin/pages/products/edit", {
             pageTitle: "Chỉnh sửa sản phẩm",
@@ -251,4 +251,24 @@ module.exports.editPatch = async (req, res) => {
         req.flash('error', `Cập nhật thất bại!`);
     }
     res.redirect("back");
+};
+
+// [GET] /admin/products/detail/:id
+module.exports.detail = async (req, res) => {
+    try {
+        const find = {
+            deleted: false,
+            _id: req.params.id
+        };
+
+        const product = await Product.findOne(find);
+        console.log(product);
+
+        res.render("admin/pages/products/detail", {
+            pageTitle: product.title,
+            product: product
+        });
+    } catch (error) {
+        res.redirect(`${systemConfig.prefixAdmin}/products`);
+    }
 };
