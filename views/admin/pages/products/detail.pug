@@ -24,7 +24,7 @@ block main
         div.mb-4 Vị trí: b #{product.position}
 
     if product.description
-        div.mb-4 #{product.description}
+        div.mb-4 !{product.description}
     a(
         href=`${prefixAdmin}/products/edit/${product.id}`
         class="btn btn-warning"
