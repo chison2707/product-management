@@ -1,5 +1,6 @@
 const Product = require("../../models/product.model");
 const ProductCategory = require("../../models/product-category.model");
+const Account = require("../../models/account.model");
 const systemConfig = require("../../config/system");
 
 const createTreeHelper = require("../../helpers/createTree");
@@ -50,7 +51,16 @@ module.exports.index = async (req, res) => {
         .sort(sort)
         .limit(objPagination.limitItems)
         .skip(objPagination.skip);
-    // console.log(products);
+
+    for (const product of products) {
+        const user = await Account.findOne({
+            _id: product.createBy.account_id
+        });
+        if (user) {
+            product.accountFullName = user.fullName;
+        }
+    }
+
     res.render("admin/pages/products/index", {
         pageTitle: "Danh sách sản phẩm",
         products: products,
@@ -158,7 +168,6 @@ module.exports.listDelete = async (req, res) => {
         .sort({ position: 'asc' })
         .limit(objPagination.limitItems)
         .skip(objPagination.skip);
-    // console.log(products);
     res.render("admin/pages/products/listDelete", {
         pageTitle: "Danh sách các sản phẩm đã xóa",
         products: products,
@@ -221,6 +230,10 @@ module.exports.createPost = async (req, res) => {
         req.body.position = countProducts + 1;
     } else {
         req.body.position = parseInt(req.body.position);
+    }
+
+    req.body.createBy = {
+        account_id: res.locals.user.id
     }
 
     const product = new Product(req.body);

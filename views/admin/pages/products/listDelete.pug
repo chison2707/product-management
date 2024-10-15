@@ -8,16 +8,16 @@ include ../../mixins/alert.pug
 block main
     +alert-success(5000)
     if(role.permissions.includes("products_delete"))
-        h1 Danh sách sản phẩm
+        h1 Danh sách sản phẩm đã xóa
 
         .card.mb-3
             .card-header Bộ lọc và Tìm kiếm
                 .card-body
                     .row
-                        .col-6
-                        +filter-status(filterStatus)  
-                        .col-6 
-                        +search(keyword)  
+                        .col-6.text-left
+                            +filter-status(filterStatus)  
+                        .col-6.text-right
+                            +search(keyword)  
         .card.mb-3
             .card-header Danh sách
                 .card-body
