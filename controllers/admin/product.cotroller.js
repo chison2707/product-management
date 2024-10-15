@@ -100,7 +100,10 @@ module.exports.changeMulti = async (req, res) => {
         case "delete-all":
             await Product.updateMany({ _id: { $in: ids } }, {
                 deleted: true,
-                deleteAt: new Date()
+                deleteBy: {
+                    account_id: res.locals.user.id,
+                    deleteAt: new Date()
+                }
             });
             req.flash('success', `Đã xóa thành công ${ids.length} sản phẩm!`);
             break;
@@ -121,7 +124,7 @@ module.exports.changeMulti = async (req, res) => {
     res.redirect("back");
 }
 
-//[PATCH] / admin/prducts/delete/:id
+//[DELETE] / admin/prducts/delete/:id
 module.exports.deleteItem = async (req, res) => {
     const status = req.params.status;
     const id = req.params.id;
@@ -129,7 +132,11 @@ module.exports.deleteItem = async (req, res) => {
     // await Product.deleteOne({ _id: id });
     await Product.updateOne({ _id: id }, {
         deleted: true,
-        deleteAt: new Date()
+        // deleteAt: new Date()
+        deleteBy: {
+            account_id: res.locals.user.id,
+            deleteAt: new Date()
+        }
     });
     req.flash('success', 'Xóa sản phẩm thành công!');
 
@@ -168,6 +175,16 @@ module.exports.listDelete = async (req, res) => {
         .sort({ position: 'asc' })
         .limit(objPagination.limitItems)
         .skip(objPagination.skip);
+
+    for (const product of products) {
+        const user = await Account.findOne({
+            _id: product.deleteBy.account_id
+        });
+        if (user) {
+            product.accountFullName = user.fullName;
+        }
+    }
+
     res.render("admin/pages/products/listDelete", {
         pageTitle: "Danh sách các sản phẩm đã xóa",
         products: products,
