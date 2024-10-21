@@ -64,6 +64,7 @@ block main
                                 th Vị trí
                                 th Trạng thái
                                 th Người tạo
+                                th Người cập nhật
                                 th Hành động
                         tbody 
                             each item, index in products
@@ -121,6 +122,12 @@ block main
                                         p #{item.accountFullName}
                                         p
                                             +formatDateTime(item.createBy.createdAt)
+                                    td
+                                        - const updateBy = item.updateBy.slice(-1)[0]
+                                        if(updateBy)
+                                            p #{updateBy.accountFullName}
+                                            p
+                                                +formatDateTime(updateBy.updatedAt)
                                     td
                                         a(
                                             href= `${prefixAdmin}/products/detail/${item.id}`
