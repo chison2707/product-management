@@ -32,11 +32,6 @@
     padding: 10px;
 }
 
-/* Container margin */
-.container.my-3 {
-    margin: 0.5rem 0;
-    /* Giảm khoảng cách tổng thể */
-}
 
 /* Title for product list */
 .box-head {
@@ -45,83 +40,97 @@
     /* Giảm khoảng cách phía dưới */
 }
 
-.inner-title {
-    font-size: 1.1rem;
-    /* Giảm kích thước tiêu đề */
-    font-weight: bold;
-    color: #333;
+/* Bố cục danh sách sản phẩm */
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 20px;
 }
 
-/* Product item styles */
+/* Thiết kế ô sản phẩm */
 .product-item {
-    background-color: #f0f0f0;
-    /* Màu nền nhạt hơn */
-    padding: 0.5rem;
-    /* Giảm padding */
-    border-radius: 5px;
-    /* Giảm bo tròn các góc */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
     text-align: center;
-    transition: transform 0.2s ease-in-out;
+    position: relative;
+    transition: box-shadow 0.3s ease;
 }
 
+/* Hiệu ứng khi hover */
 .product-item:hover {
-    transform: translateY(-3px);
-    /* Nhẹ nhàng hơn khi hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Image styling */
+/* Hình ảnh sản phẩm */
 .product-item img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    border-radius: 4px;
-    /* Giảm bo tròn ảnh */
-    margin-bottom: 0.25rem;
-    /* Giảm khoảng cách giữa ảnh và nội dung */
 }
 
-/* New price styling */
-.inner-price-new {
-    font-size: 1rem;
-    /* Giảm kích thước giá mới */
-    color: #e74c3c;
-    /* Đỏ nhẹ hơn */
-    font-weight: bold;
+/* Tên sản phẩm */
+.product-name {
+    font-size: 14px;
+    color: #333;
+    margin: 10px 0;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Old price styling */
-.inner-price-old {
-    font-size: 0.75rem;
-    /* Giảm kích thước giá cũ */
-    color: #aaa;
-    /* Màu xám nhạt hơn */
+/* Giá sản phẩm */
+.product-price {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Giá gốc */
+.original-price {
     text-decoration: line-through;
-    margin-right: 6px;
-    /* Giảm khoảng cách với giá mới */
+    color: #999;
+    margin-right: 5px;
 }
 
-/* Discount styling */
-.inner-discount {
-    font-size: 0.75rem;
-    /* Giảm kích thước chữ của giảm giá */
-    color: #27ae60;
+/* Giá đã giảm */
+.discount-price {
+    color: #ff5722;
     font-weight: bold;
 }
 
-/* Add some spacing between products */
-.row .col-4.mb-3 {
-    margin-bottom: 0.5rem;
-    /* Giảm khoảng cách giữa các sản phẩm */
+/* Nút mua hàng */
+.buy-button {
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
 }
 
-/* Optional: Adjust the h3 title of the product for better appearance */
-h3.inner-title {
-    font-size: 1rem;
-    /* Giảm kích thước tiêu đề sản phẩm */
-    color: #2c3e50;
-    /* Màu đậm hơn một chút */
-    margin-bottom: 0.5rem;
-    /* Giảm khoảng cách giữa tiêu đề và giá */
-    font-weight: 600;
-    /* Nhấn mạnh một chút */
+.buy-button:hover {
+    background-color: #e64a19;
+}
+
+.product-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Nhãn phần trăm giảm giá */
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff5722;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
 }
