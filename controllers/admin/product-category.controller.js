@@ -37,16 +37,22 @@ module.exports.create = async (req, res) => {
 
 // [POST] /admin/product-category/create
 module.exports.createPost = async (req, res) => {
-    if (req.body.position == "") {
-        const countProducts = await ProductCategory.countDocuments();
-        req.body.position = countProducts + 1;
-    } else {
-        req.body.position = parseInt(req.body.position);
-    }
-    const record = new ProductCategory(req.body);
-    await record.save();
-    res.redirect(`${systemConfig.prefixAdmin}/products-category`);
+    const permissions = res.locals.permissions;
 
+    if (!permissions.includes("products-category_create")) {
+        res.status(403).send("Bạn không có quyền thêm mới danh mục sản phẩm");
+        return;
+    } else {
+        if (req.body.position == "") {
+            const countProducts = await ProductCategory.countDocuments();
+            req.body.position = countProducts + 1;
+        } else {
+            req.body.position = parseInt(req.body.position);
+        }
+        const record = new ProductCategory(req.body);
+        await record.save();
+        res.redirect(`${systemConfig.prefixAdmin}/products-category`);
+    }
 }
 
 // [GET] /admin/product-category/edit
