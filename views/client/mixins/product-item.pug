@@ -1,0 +1,13 @@
+mixin product-item(item)
+    .col-3.mb-3
+          .product-list
+            .product-item
+              img(src=item.thumbnail, alt=item.title)
+              if(item.featured == "1")
+                .inner-featured Nổi bật
+              h3.product-name #{item.title}
+              .discount-badge #{item.discountPercentage}%
+              .product-price
+                  span.original-price #{item.priceNew}₫
+                  span.discount-price #{item.price}₫
+              button.buy-button Mua ngay
