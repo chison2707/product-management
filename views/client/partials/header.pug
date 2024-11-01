@@ -1,17 +1,39 @@
 include ../mixins/sub-menu.pug
 
-header.header
+header
   .container
-    .row.align-items-center
-      .col-3.inner-logo
-        a(href="/")
-          img(src="/images/logo.png", alt="Logo")
-      .col-9
-        .inner-menu
-          ul
-            li
-              a.headerTitle(href="/") Trang chủ
-            li(class="sub-menu")
-              - const pathProduct = "/products";            
-              a.headerTitle(href=pathProduct) Sản phẩm
-              +sub-menu(layoutProductsCategory,pathProduct)
+    .logo
+      a(href="/")
+        img(src="/images/logo.png", alt="Logo")
+    .search-bar
+      input(type='text' placeholder='Tìm kiếm sản phẩm...')
+      button
+        i.fas.fa-search
+    nav.main-menu
+      ul
+        li
+          a(href='#') Trang chủ
+        li(class="sub-menu")
+          - const pathProduct = "/products";            
+          a.headerTitle(href=pathProduct) Sản phẩm
+          +sub-menu(layoutProductsCategory,pathProduct)
+    .icons
+      a(href='#')
+        i.fas.fa-shopping-cart
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css' integrity='sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==' crossorigin='anonymous' referrerpolicy='no-referrer')
+
+//- header.header
+//-   .container
+//-     .row.align-items-center
+//-       .col-3.inner-logo
+//-         a(href="/")
+//-           img(src="/images/logo.png", alt="Logo")
+//-       .col-9
+//-         .inner-menu
+//-           ul
+//-             li
+//-               a.headerTitle(href="/") Trang chủ
+            //- li(class="sub-menu")
+            //-   - const pathProduct = "/products";            
+            //-   a.headerTitle(href=pathProduct) Sản phẩm
+            //-   +sub-menu(layoutProductsCategory,pathProduct)
