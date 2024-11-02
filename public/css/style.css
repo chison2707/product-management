@@ -378,3 +378,81 @@ a.product-item {
 }
 
 /* end product-detail */
+
+/* Show Alert */
+/* General Alert Styles */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: -320px;
+    max-width: 300px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+
+/* Icon Styles */
+.alert-icon i {
+    font-size: 1.5em;
+}
+
+/* Success Alert */
+.alert-success {
+    background-color: #78C897;
+    /* Màu nền dịu hơn nữa */
+    border-left: 5px solid #5EA87B;
+    /* Màu viền dịu hơn nữa */
+}
+
+.alert-success .alert-icon i {
+    color: #5EA87B;
+}
+
+/* Error Alert */
+.alert-error {
+    background-color: #E68A8A;
+    /* Màu nền dịu hơn nữa */
+    border-left: 5px solid #CC7272;
+    /* Màu viền dịu hơn nữa */
+}
+
+.alert-error .alert-icon i {
+    color: #CC7272;
+}
+
+/* Alert Content */
+.alert-content {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Close Button */
+.close-alert {
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+/* Show Alert with Slide-In Effect */
+.show {
+    right: 20px;
+    opacity: 1;
+}
+
+/* Hide Alert with Slide-Out Effect */
+.hide {
+    right: -320px;
+    opacity: 0;
+}
+
+/* End Show Alert */
