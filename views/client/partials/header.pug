@@ -29,6 +29,6 @@ header
           a.headerTitle(href=pathProduct) Sản phẩm
           +sub-menu(layoutProductsCategory,pathProduct)
     .icons
-      a(href='#')
-        i.fas.fa-shopping-cart
+      a(href='/cart')
+        i.fas.fa-shopping-cart (#{minicart ? minicart.totalQuantity : 0})
 link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css' integrity='sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==' crossorigin='anonymous' referrerpolicy='no-referrer')
