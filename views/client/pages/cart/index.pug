@@ -1,0 +1,35 @@
+extends ../../layouts/default.pug
+block main
+    .cart-container
+        .cart-title Giỏ Hàng
+
+        if(cart.products.length > 0)
+            each item in cart.products
+                .cart-item
+                    img(src=item.productInfo.thumbnail alt=item.productInfo.title)
+                    .cart-details
+                        a(href=`/products/detail/${item.productInfo.slug}`)  #{item.productInfo.title}
+                        p Đơn giá: #{item.productInfo.priceNew}đ
+                    .cart-quantity
+                        input(
+                            type="number" 
+                            name= "quantity" 
+                            value= item.quantity
+                            min="1" 
+                            product-id= item.product_id
+                            style="width: 50px;"
+                        )
+                    .cart-total #{item.totalPrice}
+                    a(
+                        href=`/cart/delete/${item.product_id}`
+                        class="btn btn-danger"
+                    ) Xóa
+
+        .cart-summary
+            p
+                b Tổng tiền: #{cart.totalPrice}đ
+
+        a(
+            href="/cart/checkout"
+            class="btn btn-success"
+        ) Tiếp tục thanh toán
