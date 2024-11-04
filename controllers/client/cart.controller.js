@@ -76,11 +76,10 @@ module.exports.index = async (req, res) => {
     });
 }
 
-// [GET] /cart
+// [GET] /cart/delete/:productId
 module.exports.delete = async (req, res) => {
     const cartId = req.cookies.cartId;
     const productId = req.params.product_id;
-    console.log(productId);
 
     await Cart.updateOne({
         _id: cartId
@@ -92,4 +91,24 @@ module.exports.delete = async (req, res) => {
 
     res.redirect("back");
 
+}
+
+// [GET] /cart/update/:productId/:quantity
+module.exports.update = async (req, res) => {
+    const cartId = req.cookies.cartId;
+    const productId = req.params.product_id;
+    const quantity = req.params.quantity;
+
+    await Cart.updateOne({
+        _id: cartId,
+        "products.product_id": productId
+    }, {
+        $set: {
+            "products.$.quantity": quantity
+        }
+    })
+
+    req.flash("success", "Đã cập nhật số lượng!");
+
+    res.redirect("back");
 }
