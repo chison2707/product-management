@@ -2,8 +2,15 @@ extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 
 block main
+    .row.ml-2.mt-2
+        button(
+            class="btn btn-danger"
+            btn-go-back
+        )
+            i(class="fa-solid fa-arrow-left-long fa-2xl")
     .product-detail
         .container.my-3
+
             .row 
                 .col-6 
                     .inner-thumb

@@ -23,3 +23,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// button go back
+
+const btnGoBack = document.querySelectorAll("[btn-go-back]");
+if (btnGoBack.length > 0) {
+    btnGoBack.forEach(btn => {
+        btn.addEventListener("click", () => {
+            history.back();
+        });
+    });
+}
+
+// end button go back
