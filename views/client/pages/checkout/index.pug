@@ -1,0 +1,58 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+    +alert-success(5000)
+    +alert-error(5000)
+    .cart-container
+        .cart-title Đặt hàng
+
+        if(cart.products.length > 0)
+            each item in cart.products
+                .cart-item
+                    img(src=item.productInfo.thumbnail alt=item.productInfo.title)
+                    .cart-details
+                        p #{item.productInfo.title}
+                        p Đơn giá: #{item.productInfo.priceNew}đ
+                    .cart-quantity
+                         p #{item.quantity}
+                    .cart-total #{item.totalPrice}đ
+
+        .cart-summary
+            p
+                b Tổng tiền: #{cart.totalPrice}đ
+
+        if(cart.products.length > 0)
+            .order-container
+                form.order-form(action='/checkout/order' method='POST')
+                    .form-group
+                    label(for='fullName') Tên của bạn:
+                    input(
+                        id="fullName"
+                        type='text' 
+                        name='fullName' 
+                        required
+                    )
+                    .form-group
+                    label(for='phone') Số điện thoại:
+                    input(
+                        type='text' 
+                        name='phone' 
+                        id='phone' 
+                        required
+                    )
+                    .form-group
+                    label(for='address') Địa chỉ:
+                    input(
+                        type='text' 
+                        name='address' 
+                        id='address' 
+                        required
+                    )
+                    
+                    button(
+                        type='submit'
+                        class="btn-order mt-2"
+                    ) Đặt hàng
+
+
+    script(src="/js/cart.js") ;
