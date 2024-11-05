@@ -678,3 +678,66 @@ a.back-home-button:hover {
 }
 
 /* end Đặt hàng thành công */
+
+/* register */
+.container-register {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-register h2 {
+    text-align: center;
+    color: #F05D40;
+    margin-bottom: 20px;
+}
+
+.container-register form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-register label {
+    margin-bottom: 5px;
+    color: #666;
+    font-weight: bold;
+}
+
+.container-register input[type="text"],
+.container-register input[type="email"],
+.container-register input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.container-register input[type="text"]:focus,
+.container-register input[type="email"]:focus,
+.container-register input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.container-register button {
+    padding: 12px;
+    background-color: #EE4D2D;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.container-register button:hover {
+    background-color: #F05D40;
+}
+
+/* end register */
