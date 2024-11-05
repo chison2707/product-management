@@ -1,0 +1,27 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+    +alert-success(5000)
+    +alert-error(5000)
+
+    .login-container
+        h2 Đăng nhập
+        form(
+            action="/user/login"
+            method="POST"
+        ) 
+            input(
+                type='email' 
+                name='email' 
+                id='email' 
+                placeholder='Email' 
+                required
+            )
+            input(
+                type='password' 
+                name='password' 
+                id='password' 
+                placeholder='Mật khẩu' 
+                required
+            )
+            button(type='submit') Đăng nhập

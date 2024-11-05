@@ -741,3 +741,67 @@ a.back-home-button:hover {
 }
 
 /* end register */
+
+/* login */
+/* CSS cho khung đăng nhập */
+.login-container {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Đổ bóng */
+    text-align: center;
+    width: 500px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-container h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+/* CSS cho input (tên đăng nhập và mật khẩu) */
+.login-container input[type='email'],
+.login-container input[type='password'] {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+.login-container input[type='email']:focus,
+.login-container input[type='password']:focus {
+    border-color: #6c63ff;
+    /* Màu nổi bật khi focus */
+    outline: none;
+}
+
+/* CSS cho nút đăng nhập */
+.login-container button {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #6c63ff;
+    /* Màu xanh dương đậm */
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-container button:hover {
+    background-color: #5751d7;
+    /* Màu khi hover */
+}
+
+
+/* end login */
