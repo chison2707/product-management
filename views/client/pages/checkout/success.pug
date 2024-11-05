@@ -1,0 +1,44 @@
+extends ../../layouts/default.pug
+
+block main 
+    .order-success-container
+        h2 Đặt hàng thành công!
+        p Cảm ơn bạn đã đặt hàng! Đơn hàng của bạn đang được xử lý
+        .personal-info
+            h2 Thông tin cá nhân
+            p
+                strong Tên khách hàng:
+                |   #{order.userInfor.fullName}
+            p
+                strong Địa chỉ:
+                |  #{order.userInfor.address}
+            p
+                strong Số điện thoại:
+                |  #{order.userInfor.phone}
+        .order-info
+            h2 Thông tin đơn hàng
+        if(order.products.length > 0)
+            each item in order.products
+                .order-item
+                    img(
+                        src=item.productInfo.thumbnail 
+                        alt=item.productInfo.title
+                    )
+                    .item-details
+                    p
+                        strong Sản phẩm:
+                        |  #{item.productInfo.title}
+                    p
+                        strong Giá:
+                        |  #{item.priceNew}đ
+                    p
+                        strong Số lượng:
+                        |  #{item.quantity}
+                    p
+                        strong Tổng tiền:
+                        |  #{item.totalPrice}đ
+        .order-total
+            p
+                strong Tổng tiền:
+                |  #{order.totalPrice}đ
+        a.back-home-button(href='/') Quay lại trang chủ

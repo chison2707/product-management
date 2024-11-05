@@ -8,7 +8,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
 }
 
 /* Header */
@@ -592,3 +591,90 @@ input[type="text"]:focus {
 }
 
 /* end checkout */
+
+/* Đặt hàng thành công */
+.order-success-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.order-success-container h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #F24E2E;
+}
+
+.order-success-container p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #555;
+}
+
+.personal-info,
+.order-info,
+.order-total {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.personal-info h2,
+.order-info h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.order-item img {
+    width: 130px;
+    height: 130px;
+    border-radius: 6px;
+}
+
+.item-details p {
+    margin: 6px 0;
+    color: #333;
+}
+
+.order-total p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+a.back-home-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 30px;
+    font-size: 18px;
+    background-color: #EE4D2D;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+a.back-home-button:hover {
+    background-color: #F05D40;
+}
+
+.order-success-container a.back-home-button {
+    margin: 30px auto 0;
+}
+
+/* end Đặt hàng thành công */
