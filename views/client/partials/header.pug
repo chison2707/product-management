@@ -33,10 +33,14 @@ header
         i.fas.fa-shopping-cart (#{minicart ? minicart.totalQuantity : 0})
     nav.main-menu.ml-1
       ul
-        li 
-          a(href='/user/login') Đăng nhập 
-        li 
-          a(href='/user/register') Đăng ký
+        if(user)
+          li 
+            a(href='/user/logout') Đăng xuất
+        else
+          li 
+            a(href='/user/login') Đăng nhập 
+          li 
+            a(href='/user/register') Đăng ký
 
 
 link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css' integrity='sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==' crossorigin='anonymous' referrerpolicy='no-referrer')
