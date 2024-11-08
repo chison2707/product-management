@@ -35,6 +35,8 @@ header
       ul
         if(user)
           li 
+            a(href='/user/infor') #{user.fullName}
+          li 
             a(href='/user/logout') Đăng xuất
         else
           li 
