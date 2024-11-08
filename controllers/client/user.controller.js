@@ -2,6 +2,7 @@ const md5 = require('md5');
 const User = require("../../models/user.model");
 const ForgotPassword = require("../../models/forgot-password.model");
 const Cart = require('../../models/cart.model');
+const Order = require('../../models/order.model');
 
 const generateHelper = require("../../helpers/generate");
 const sendMailHelper = require("../../helpers/sendMail");
@@ -72,6 +73,13 @@ module.exports.loginPost = async (req, res) => {
     // lưu user_id vào collection carts
     await Cart.updateOne({
         _id: req.cookies.cartId
+    }, {
+        user_id: user.id
+    })
+
+    // lưu user_id vào collection orders
+    await Order.updateOne({
+        cart_id: req.cookies.cartId
     }, {
         user_id: user.id
     })
