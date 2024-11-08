@@ -741,3 +741,46 @@ a.back-home-button:hover {
 }
 
 /* end register */
+
+/* card user */
+.card-user {
+    width: 320px;
+    padding: 24px;
+    margin: 20px auto;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-family: Arial, sans-serif;
+}
+
+.card-user:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.customer-details-user h2 {
+    margin: 0;
+    font-size: 26px;
+    color: #333;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+
+.customer-details-user p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #555;
+    font-weight: 400;
+}
+
+.customer-details-user p:before {
+    content: "✉️ ";
+    color: #555;
+    font-size: 16px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+/*end card user */
