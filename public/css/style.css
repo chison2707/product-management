@@ -680,7 +680,7 @@ a.back-home-button:hover {
 /* end Đặt hàng thành công */
 
 /* register */
-.container-register {
+.container-user {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
@@ -690,26 +690,26 @@ a.back-home-button:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.container-register h2 {
+.container-user h2 {
     text-align: center;
     color: #F05D40;
     margin-bottom: 20px;
 }
 
-.container-register form {
+.container-user form {
     display: flex;
     flex-direction: column;
 }
 
-.container-register label {
+.container-user label {
     margin-bottom: 5px;
     color: #666;
     font-weight: bold;
 }
 
-.container-register input[type="text"],
-.container-register input[type="email"],
-.container-register input[type="password"] {
+.container-user input[type="text"],
+.container-user input[type="email"],
+.container-user input[type="password"] {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -717,15 +717,15 @@ a.back-home-button:hover {
     font-size: 16px;
 }
 
-.container-register input[type="text"]:focus,
-.container-register input[type="email"]:focus,
-.container-register input[type="password"]:focus {
-    border-color: #007bff;
+.container-user input[type="text"]:focus,
+.container-user input[type="email"]:focus,
+.container-user input[type="password"]:focus {
+    border-color: #F05D40;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
 }
 
-.container-register button {
+.container-user button {
     padding: 12px;
     background-color: #EE4D2D;
     color: #fff;
@@ -736,71 +736,8 @@ a.back-home-button:hover {
     transition: background-color 0.3s ease;
 }
 
-.container-register button:hover {
+.container-user button:hover {
     background-color: #F05D40;
 }
 
 /* end register */
-
-/* login */
-/* CSS cho khung đăng nhập */
-.login-container {
-    background: #fff;
-    padding: 2.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Đổ bóng */
-    text-align: center;
-    width: 500px;
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.login-container h2 {
-    margin-bottom: 1.5rem;
-    color: #333;
-    font-size: 1.5rem;
-}
-
-/* CSS cho input (tên đăng nhập và mật khẩu) */
-.login-container input[type='email'],
-.login-container input[type='password'] {
-    width: 100%;
-    padding: 0.8rem;
-    margin: 0.5rem 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-}
-
-.login-container input[type='email']:focus,
-.login-container input[type='password']:focus {
-    border-color: #6c63ff;
-    /* Màu nổi bật khi focus */
-    outline: none;
-}
-
-/* CSS cho nút đăng nhập */
-.login-container button {
-    width: 100%;
-    padding: 0.8rem;
-    margin-top: 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #6c63ff;
-    /* Màu xanh dương đậm */
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.login-container button:hover {
-    background-color: #5751d7;
-    /* Màu khi hover */
-}
-
-/* end login */
