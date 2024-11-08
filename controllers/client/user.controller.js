@@ -77,13 +77,6 @@ module.exports.loginPost = async (req, res) => {
         user_id: user.id
     })
 
-    // lưu user_id vào collection orders
-    await Order.updateOne({
-        cart_id: req.cookies.cartId
-    }, {
-        user_id: user.id
-    })
-
     res.redirect(`/`);
 }
 
