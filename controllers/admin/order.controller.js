@@ -98,6 +98,16 @@ module.exports.detail = async (req, res) => {
             order: order
         });
     } catch (error) {
-        res.redirect(`${systemConfig.prefixAdmin}/products`);
+        res.redirect(`${systemConfig.prefixAdmin}/order`);
     }
+}
+
+// [PATCH]/admin/order/delete/:id
+module.exports.deleteItem = async (req, res) => {
+    const id = req.params.id;
+
+    await Order.deleteOne({ _id: id });
+    req.flash('success', 'Xóa hóa đơn thành công!');
+
+    res.redirect("back");
 }
