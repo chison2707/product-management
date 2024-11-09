@@ -53,10 +53,21 @@ module.exports.changeStatus = async (req, res) => {
         account_id: res.locals.user.id,
         updatedAt: new Date()
     }
-    await Order.updateOne({ _id: id }, {
-        status: status,
-        $push: { updateBy: updatedBy }
+
+    const order = await Order.findOne({
+        _id: id
     });
+    if (order.status === 'shipped' || order.status === 'canceled') {
+        req.flash('error', 'Hóa đơn đã được giao hoặc hủy, không thể cập nhật lại!');
+        return res.redirect("back");
+    } else {
+        await Order.updateOne({ _id: id }, {
+            status: status,
+            $push: { updateBy: updatedBy }
+        });
+
+    }
+
 
     req.flash('success', 'Cập nhật trạng thái hóa đơn thành công!');
 

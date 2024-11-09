@@ -3,6 +3,7 @@ include ../../mixins/alert.pug
 include ../../mixins/moment.pug
 block main 
     +alert-success(3000)
+    +alert-error(3000)
 
     h1 Quản lý đơn hàng
 
@@ -31,7 +32,7 @@ block main
                             tr
                                 td #{index + 1}
                                 td #{item.userInfor.fullName}
-                                td(rowspan=item.products.length)
+                                td
                                     each product, productIndex in item.products
                                         span #{product.title}
                                         if productIndex < item.products.length - 1
