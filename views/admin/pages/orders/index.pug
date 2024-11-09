@@ -1,0 +1,90 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/moment.pug
+block main 
+    +alert-success(3000)
+
+    h1 Quản lý đơn hàng
+
+    .card.mb-3
+        .card-header Danh sách
+            .card-body
+            .row 
+    
+                table(
+                    class=" table table-hover table-sm"
+                    checkbox-multi
+                )
+                    thead
+                        tr
+                            th STT
+                            th Người đặt hàng
+                            th Tên sản phẩm
+                            th Số lượng
+                            th Tổng tiền
+                            th Tổng tiền hóa đơn
+                            th Trạng thái
+                            th Thông tin tài khoản đặt hàng
+                            th Người cập nhật
+                            th Hành động
+                    tbody
+                        each item, index in order
+                            tr
+                                td #{index + 1}
+                                td #{item.userInfor.fullName}
+                                td(rowspan=item.products.length)
+                                    each product, productIndex in item.products
+                                        span #{product.title}
+                                        if productIndex < item.products.length - 1
+                                            br
+                                td 
+                                    each product, productIndex in item.products
+                                        span #{product.quantity}
+                                        if productIndex < item.products.length - 1
+                                            br
+                                td 
+                                    each product, productIndex in item.products
+                                        span #{product.totalPrice}đ
+                                        if productIndex < item.products.length - 1
+                                            br
+                                td <b> #{item.totalPrice}đ</b>
+                                td 
+                                    select(
+                                        data-id=item.id 
+                                        select-change-status
+                                        class="form-select form-select-sm"
+                                    )
+                                        option(value="pending" selected=item.status == "pending") Chờ xử lí
+                                        option(value="confirm" selected=item.status == "confirm") Đã duyệt
+                                        option(value="delivery" selected=item.status == "delivery") Đang giao
+                                        option(value="shipped" selected=item.status == "shipped") Giao thành công
+                                        option(value="canceled" selected=item.status == "canceled") Đã hủy
+                                td 
+                                    p #{item.createFullName}
+                                    p #{item.emailUser}
+                                    p
+                                        +formatDateTime(item.createdAt)
+                                td
+                                        - const updateBy = item.updateBy.slice(-1)[0]
+                                        if(updateBy)
+                                            p #{updateBy.accountFullName}
+                                            p
+                                                +formatDateTime(updateBy.updatedAt)
+                                td
+                                    a(
+                                        href=`${prefixAdmin}/products/detail/${item.id}`
+                                        class="btn btn-secondary btn-sm"
+                                    ) Chi tiết
+                                    button(
+                                        class="btn btn-danger btn-sm ml-1"
+                                        button-delete
+                                        data-id=item.id
+                                    ) Xóa
+    form(
+            action=""
+            method="POST"
+            id="form-change-status"
+            data-path=`${prefixAdmin}/order/change-status`
+        )
+
+    script(src="/admin/js/order.js") 

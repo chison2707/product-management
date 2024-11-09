@@ -39,6 +39,7 @@ module.exports.index = async (req, res) => {
 module.exports.order = async (req, res) => {
     const cartId = req.cookies.cartId;
     const userInfo = req.body;
+    const user_id = req.cookies.tokenUser;
 
     const cart = await Cart.findOne({
         _id: cartId
@@ -65,6 +66,7 @@ module.exports.order = async (req, res) => {
     }
 
     const objOrder = {
+        user_id: user_id,
         cart_id: cartId,
         userInfor: userInfo,
         products: products

@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
+    user_id: String,
     cart_id: String,
     userInfor: {
         fullName: String,
         phone: String,
         address: String
+    },
+    status: {
+        type: String,
+        default: "pending"
     },
     products: [
         {
@@ -13,6 +18,12 @@ const orderSchema = new mongoose.Schema({
             price: Number,
             discountPercentage: Number,
             quantity: Number
+        }
+    ],
+    updateBy: [
+        {
+            account_id: String,
+            updatedAt: Date
         }
     ]
 }, {
