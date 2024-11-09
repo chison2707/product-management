@@ -62,3 +62,42 @@ module.exports.changeStatus = async (req, res) => {
 
     res.redirect("back");
 }
+
+// [PATCH]/admin/order/change-status/:status/:id
+module.exports.detail = async (req, res) => {
+    try {
+        const find = {
+            _id: req.params.id
+        };
+
+        const order = await Order.findOne(find);
+        // thông tin tài khoản khách hàng
+        const user = await User.findOne({
+            tokenUser: order.user_id
+        }).select("-password")
+        if (user) {
+            order.createFullName = user.fullName;
+            order.emailUser = user.email;
+        }
+
+        for (const product of order.products) {
+            const productInfo = await Product.findOne({
+                _id: product.product_id
+            }).select("title thumbnail");
+
+            product.productInfo = productInfo;
+
+            product.priceNew = productHelper.priceNewProduct(product);
+
+            product.totalPrice = product.priceNew * product.quantity;
+        }
+        order.totalPrice = order.products.reduce((sum, item) => sum + item.totalPrice, 0);
+
+        res.render("admin/pages/orders/detail", {
+            pageTitle: "Xem chi tiết đơn hàng",
+            order: order
+        });
+    } catch (error) {
+        res.redirect(`${systemConfig.prefixAdmin}/products`);
+    }
+}

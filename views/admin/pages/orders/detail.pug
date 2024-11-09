@@ -1,0 +1,58 @@
+extends ../../layouts/default.pug
+include ../../mixins/moment.pug
+
+block main
+    h4.mb-3 <b>Thông tin khách đặt hàng</b>
+    p Họ và tên: <b>#{order.userInfor.fullName}</b>
+    p Số điện thoại: <b>#{order.userInfor.phone}</b>
+    p Địa chỉ: <b>#{order.userInfor.address}</b>
+    h4 <b>Thông tin tài khoản khách đặt hàng</b>
+    p Tên tài khoản đặt hàng: <b>#{order.createFullName}</b>
+    p email đặt hàng: <b>#{order.emailUser}</b>
+    h4.mb-2 <b>Thông tin đơn hàng</b>
+    each item,index in order.products
+        table(
+            class=" table table-hover table-sm"
+        )
+            thead
+                tr
+                    th STT
+                    th Hình ảnh
+                    th Ngày đặt hàng
+                    th Số lượng
+                    th Giá
+                    th Thành tiền
+            tbody
+                td #{index+1}
+                td
+                    img(
+                        src=item.productInfo.thumbnail 
+                        alt=item.productInfo.title
+                        width="100px" 
+                        height="70px"
+                    )
+                td(rowspan=order.products.length) 
+                    +formatDateTime(order.createdAt)
+                td #{item.quantity}
+                td #{item.priceNew}đ
+                td #{item.totalPrice}đ
+    h4.mt-2 <b>Tổng tiền đơn hàng: #{order.totalPrice}đ</b>
+    .mt-4 <b>Trạng thái:</b>
+        if order.status === "pending"
+            span(class="badge badge-danger") Chờ xử lí
+        else
+            if order.status === "confirm"
+                span(class="badge badge-primary") Đã duyệt
+            else
+            if order.status === "delivery"
+                span(class="badge badge-warning") Đang giao
+            else
+            if order.status === "shipped"
+                span(class="badge badge-success") Giao thành công
+            else
+            if order.status === "canceled"
+                span(class="badge badge-light") Đã hủy
+    a.mt-3(
+        class="btn btn-dark"
+        href="/admin/order"
+    ) Quay lại trang quản lý

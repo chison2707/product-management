@@ -13,7 +13,6 @@ block main
     
                 table(
                     class=" table table-hover table-sm"
-                    checkbox-multi
                 )
                     thead
                         tr
@@ -50,7 +49,8 @@ block main
                                 td <b> #{item.totalPrice}đ</b>
                                 td 
                                     select(
-                                        data-id=item.id 
+                                        data-id=item.id
+                                        disabled= item.status == "shipped" || item.status == "canceled" ? true : false
                                         select-change-status
                                         class="form-select form-select-sm"
                                     )
@@ -72,7 +72,7 @@ block main
                                                 +formatDateTime(updateBy.updatedAt)
                                 td
                                     a(
-                                        href=`${prefixAdmin}/products/detail/${item.id}`
+                                        href=`${prefixAdmin}/order/detail/${item.id}`
                                         class="btn btn-secondary btn-sm"
                                     ) Chi tiết
                                     button(
