@@ -1,0 +1,75 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+    +alert-error(3000)
+    +alert-success(3000)
+    .row.d-flex.justify-content-center
+        .col-6.mt-5
+            .card.mb-5
+                .card-header 
+                    b.text-danger Chỉnh sửa thông tin khách hàng
+                .card-body
+                    form(
+                        action=`/user/infor/edit?_method=PATCH`
+                        method="POST"
+                        enctype="multipart/form-data"
+                    )
+                        div(
+                            class="form-group"
+                            upload-image
+                        )
+                            label(for="avatar") Ảnh đại diện
+                            input(
+                                type="file"
+                                class="form-control-file"
+                                name="avatar"
+                                id="avatar"
+                                accept="image/*"
+                                upload-image-input
+                            )
+                            div(class="image-container")
+                                img(
+                                    src=user.avatar
+                                    alt=user.avatar
+                                    upload-image-preview
+                                    class="image-preview"
+                                )
+                        div(class="form-group")
+                            label(
+                                for='fullName'
+                            ) Họ và tên
+                            input(
+                                type='text' 
+                                name='fullName' 
+                                id='fullName' 
+                                class="form-control"
+                                value= user.fullName
+                            )
+                        div(class="form-group")
+                            label(
+                                for='email'
+                            ) Email
+                            input(
+                                class="form-control"
+                                type='email' 
+                                name='email' 
+                                id='email' 
+                                value= user.email
+                                disabled
+                            )
+                        div(class="form-group")
+                            label(
+                                for='phone'
+                            ) Số điện thoại
+                            input(
+                                class="form-control"
+                                type='text' 
+                                name='phone' 
+                                id='phone' 
+                                value= user.phone
+                            )
+                        div(class="form-group")
+                            button(
+                                type="submit"
+                                class="btn btn-danger"
+                            ) Cập nhật

@@ -2,7 +2,6 @@ const md5 = require('md5');
 const User = require("../../models/user.model");
 const ForgotPassword = require("../../models/forgot-password.model");
 const Cart = require('../../models/cart.model');
-const Order = require('../../models/order.model');
 
 const generateHelper = require("../../helpers/generate");
 const sendMailHelper = require("../../helpers/sendMail");
@@ -188,10 +187,24 @@ module.exports.resetPasswordPost = async (req, res) => {
 
 // [GET]/user/infor
 module.exports.infor = async (req, res) => {
-    const email = req.query.email;
 
     res.render("client/pages/user/infor", {
-        pageTitle: "Thông tin tài khoản",
-        email: email
+        pageTitle: "Thông tin tài khoản"
     });
+}
+
+// [GET]/user/infor/edit/:id
+module.exports.editInfor = async (req, res) => {
+    res.render("client/pages/user/edit", {
+        pageTitle: "Chỉnh sửa tài khoản",
+    });
+}
+
+// [PATCH]/user/infor/edit/:id
+module.exports.editInforPatch = async (req, res) => {
+    await User.updateOne({
+        tokenUser: req.cookies.tokenUser
+    }, req.body)
+    req.flash('success', "Cập nhật thành công!")
+    res.redirect("back");
 }

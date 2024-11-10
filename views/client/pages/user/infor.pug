@@ -4,3 +4,7 @@ block main
         .customer-details-user
             h2 #{user.fullName}
             p #{user.email}
+            a(
+                class="btn btn-outline-danger"
+                href=`/user/infor/edit`
+            ) Sửa thông tin cá nhân
