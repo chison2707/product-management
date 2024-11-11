@@ -37,3 +37,12 @@ module.exports.detail = async (req, res) => {
         userClient: user
     });
 }
+
+//[GET] / admin/user/delete/:id
+module.exports.deleteUser = async (req, res) => {
+    const id = req.params.id;
+    await User.deleteOne({ _id: id })
+
+    req.flash('success', 'Xóa tài khoản thành công!');
+    res.redirect("back");
+}
