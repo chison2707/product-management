@@ -11,6 +11,7 @@ const authRoutes = require("./auth.route");
 const myAccountRoutes = require("./my-account.route");
 const orderRoutes = require("./order.route");
 const settingRoutes = require("./setting.route");
+const userRoutes = require("./user.route");
 
 module.exports = (app) => {
     const PARTH_ADMIN = systemConfig.prefixAdmin;
@@ -24,4 +25,5 @@ module.exports = (app) => {
     app.use(PARTH_ADMIN + "/my-account", authMiddleware.requireAuth, myAccountRoutes);
     app.use(PARTH_ADMIN + "/order", authMiddleware.requireAuth, orderRoutes);
     app.use(PARTH_ADMIN + "/settings", authMiddleware.requireAuth, settingRoutes);
+    app.use(PARTH_ADMIN + "/user", authMiddleware.requireAuth, userRoutes);
 }
