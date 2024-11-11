@@ -2,11 +2,21 @@ extends ../../layouts/default.pug
 block main
     .card-user.mt-5
         .customer-details-user
-            img(src=user.avatar, class="rounded-circle mb-3", style="height: 100px;")
-            h2 #{user.fullName}
-            p <i class="fa-solid fa-envelope"></i> #{user.email}
-            p <i class="fa-solid fa-phone"></i> #{user.phone}
-            a(
-                class="btn btn-outline-danger"
-                href=`/user/infor/edit`
-            ) Sửa thông tin cá nhân
+            .row.text-center
+                .col
+                    img(src=user.avatar, class="rounded-circle mb-3", style="height: 100px;")
+            .row.text-center
+                .col
+                    h2 <b> #{user.fullName}</b>
+                    p <i class="fa-solid fa-envelope"></i> #{user.email}
+                    p <i class="fa-solid fa-phone"></i> #{user.phone}
+            .row
+                .col-12.text-center
+                    a(
+                        class="btn btn-outline-danger"
+                        href=`/user/infor/edit`
+                    ) Sửa thông tin cá nhân
+                    a.mt-2(
+                        class="btn btn-outline-danger"
+                        href=`/user/infor/edit`
+                    ) Đổi mật khẩu
