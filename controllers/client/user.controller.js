@@ -208,3 +208,31 @@ module.exports.editInforPatch = async (req, res) => {
     req.flash('success', "Cập nhật thành công!")
     res.redirect("/user/infor");
 }
+
+// [GET]/user/password/change-password
+module.exports.changePassword = async (req, res) => {
+    res.render("client/pages/user/change-password", {
+        pageTitle: "Đổi mật khẩu",
+    });
+}
+
+// [POST]/user/password/change-password
+module.exports.changePasswordPost = async (req, res) => {
+    const tokenUser = req.cookies.tokenUser;
+    const newPassword = req.body.newpassword;
+    const user = await User.findOne({
+        tokenUser: tokenUser
+    });
+    if (md5(req.body.password) != user.password) {
+        req.flash("error", "Mật khẩu cũ không đúng!");
+        res.redirect("back");
+        return;
+    }
+    await User.updateOne({
+        tokenUser: tokenUser
+    }, {
+        password: md5(newPassword)
+    })
+    req.flash("success", "Đổi mật khẩu thành công!!!");
+    res.redirect("/");
+}

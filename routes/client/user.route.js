@@ -20,6 +20,9 @@ router.post('/password/otp', controller.otpPasswordPost);
 router.get('/password/reset', controller.resetPassword);
 router.post('/password/reset', validate.resetPasswordPost, controller.resetPasswordPost);
 
+router.get('/password/change-password', authMiddleware.requireAuth, controller.changePassword);
+router.post('/password/change-password', authMiddleware.requireAuth, validate.changePassword, controller.changePasswordPost);
+
 router.get('/infor', authMiddleware.requireAuth, controller.infor);
 router.get('/infor/edit', authMiddleware.requireAuth, controller.editInfor);
 router.patch('/infor/edit', upload.single('avatar'), uploadCould.upload, authMiddleware.requireAuth, controller.editInforPatch);
