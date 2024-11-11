@@ -206,5 +206,5 @@ module.exports.editInforPatch = async (req, res) => {
         tokenUser: req.cookies.tokenUser
     }, req.body)
     req.flash('success', "Cập nhật thành công!")
-    res.redirect("back");
+    res.redirect("/user/infor");
 }

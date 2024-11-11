@@ -14,6 +14,18 @@ module.exports.registerPost = (req, res, next) => {
         res.redirect("back");
         return;
     }
+
+    if (!req.body.confirmPassword) {
+        req.flash('error', 'Vui lòng xác nhận lại mật khẩu!');
+        res.redirect("back");
+        return;
+    }
+
+    if (req.body.password != req.body.confirmPassword) {
+        req.flash('error', 'Xác nhận mật khẩu không trùng khớp');
+        res.redirect("back");
+        return;
+    }
     next();
 }
 

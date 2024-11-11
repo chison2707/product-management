@@ -21,22 +21,25 @@ header
         ) 
           i.fas.fa-search
     nav.main-menu
-      ul
+      ul(class="d-flex align-items-center")
         li
           a(href='/') Trang chủ
         li(class="sub-menu")
           - const pathProduct = "/products";            
           a.headerTitle(href=pathProduct) Sản phẩm
           +sub-menu(layoutProductsCategory,pathProduct)
-    .icons
+    .icons.mb-3
       a(href='/cart')
-        i.fas.fa-shopping-cart (#{minicart ? minicart.totalQuantity : 0})
+        i.cartIcon.fas.fa-shopping-cart 
+        span.numberCart (#{minicart ? minicart.totalQuantity : 0})
     nav.main-menu.ml-1
-      ul
+      ul(class="d-flex align-items-center")
         if(user)
-          li 
-            a(href='/user/infor') #{user.fullName}
-          li 
+          li.mt-1.ml-1 
+            a(href='/user/infor')
+              img.mt-2(src=user.avatar?user.avatar:"https://iconape.com/wp-content/png_logo_vector/user-circle.png", class="rounded-circle mb-3", style="height: 20px;") 
+              span.ml-1 #{user.fullName}
+          li
             a(href='/user/logout') Đăng xuất
         else
           li 
