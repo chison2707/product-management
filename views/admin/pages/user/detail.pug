@@ -1,22 +1,23 @@
 extends ../../layouts/default.pug
 
 block main
-    .row.mt-4
-        .col-12
-            .card.mb-4.border-0.shadow-sm
-                .card-header.bg-light.text-center
-                    h5.text-secondary Thông tin tài khoản #{userClient.fullName}
-                .card-body.text-center
-                    if userClient.avatar
-                        img(src=userClient.avatar, class="rounded-circle mb-3", style="height: 100px;")
-                    if userClient.fullName
-                        p.text-muted Họ tên: <b> #{userClient.fullName}</b>
-                    if userClient.email
-                        p.text-muted Email: <b> #{userClient.email}</b>
-                    if userClient.phone
-                        p.text-muted Số điện thoại: <b> #{userClient.phone}</b>
-                    p.text-muted Số đơn đã đặt: <b> #{userClient.order}</b>
-        a.ml-3(
-            class="btn btn-primary"
-            href=`${prefixAdmin}/user`
-        ) Quay lại trang trước
+    if(role.permissions.includes("user_view"))
+        .row.mt-4
+            .col-12
+                .card.mb-4.border-0.shadow-sm
+                    .card-header.bg-light.text-center
+                        h5.text-secondary Thông tin tài khoản #{userClient.fullName}
+                    .card-body.text-center
+                        if userClient.avatar
+                            img(src=userClient.avatar, class="rounded-circle mb-3", style="height: 100px;")
+                        if userClient.fullName
+                            p.text-muted Họ tên: <b> #{userClient.fullName}</b>
+                        if userClient.email
+                            p.text-muted Email: <b> #{userClient.email}</b>
+                        if userClient.phone
+                            p.text-muted Số điện thoại: <b> #{userClient.phone}</b>
+                        p.text-muted Số đơn đã đặt: <b> #{userClient.order}</b>
+            a.ml-3(
+                class="btn btn-primary"
+                href=`${prefixAdmin}/user`
+            ) Quay lại trang trước

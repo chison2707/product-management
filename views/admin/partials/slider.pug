@@ -21,7 +21,9 @@
             if(role.permissions.includes("account_view"))
                 li 
                     a(href=`${prefixAdmin}/accounts`) Danh sách tài khoản
-            li 
-                    a(href=`${prefixAdmin}/user`) quản lý tài khoản khách hàng
-            li 
+            if(role.permissions.includes("user_view"))
+                li 
+                        a(href=`${prefixAdmin}/user`) quản lý tài khoản khách hàng
+            if(role.permissions.includes("general"))
+                li 
                     a(href=`${prefixAdmin}/settings/general`) Cài đặt chung
