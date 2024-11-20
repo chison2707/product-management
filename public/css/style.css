@@ -792,3 +792,116 @@ a.back-home-button:hover {
 }
 
 /* End Image Preview */
+
+/* chat */
+/* General styling for chat container */
+.chat {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+}
+
+/* Header styling */
+.inner-head {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #F05D40;
+    color: #fff;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+}
+
+.inner-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #8B4513;
+    /* Tông màu cà phê */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+/* Body styling for chat messages */
+.inner-body {
+    padding: 15px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.inner-incoming,
+.inner-outgoing {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-incoming .inner-content,
+.inner-outgoing .inner-content {
+    max-width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.inner-incoming .inner-content {
+    background-color: #D7CCC8;
+    /* Màu nhạt cho tin nhắn đến */
+    align-self: flex-start;
+}
+
+.inner-outgoing .inner-content {
+    background-color: #8D6E63;
+    /* Màu cà phê đậm hơn cho tin nhắn đi */
+    color: white;
+    align-self: flex-end;
+}
+
+.inner-foot {
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #eee;
+}
+
+.inner-form {
+    display: flex;
+    gap: 10px;
+}
+
+.inner-form input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+}
+
+.inner-form button {
+    background-color: #E8A085;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.inner-form button:hover {
+    background-color: #FF4500;
+}
+
+.fa-paper-plane {
+    font-size: 16px;
+}
+
+/* end chat */
