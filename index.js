@@ -38,9 +38,8 @@ app.use(flash());
 // socket.io
 const server = http.createServer(app);
 const io = new Server(server);
-io.on('connection', (socket) => {
-    console.log('a user connected');
-});
+global._io = io;
+
 
 // TinyMCE
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
