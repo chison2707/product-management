@@ -813,6 +813,7 @@ a.back-home-button:hover {
 .chat .inner-body {
     display: flex;
     flex-direction: column;
+    height: 450px;
     max-height: 450px;
     overflow-y: auto;
 }
