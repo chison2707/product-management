@@ -13,8 +13,13 @@ const orderRoutes = require("./order.route");
 const settingRoutes = require("./setting.route");
 const userRoutes = require("./user.route");
 
+const authController = require("../../controllers/admin/auth.controller");
+
 module.exports = (app) => {
     const PARTH_ADMIN = systemConfig.prefixAdmin;
+
+    app.get(PARTH_ADMIN, authController.login);
+
     app.use(PARTH_ADMIN + "/dashboard", authMiddleware.requireAuth, dashboardRoutes);
 
     app.use(PARTH_ADMIN + "/products", authMiddleware.requireAuth, productRoutes);
