@@ -954,3 +954,14 @@ a.back-home-button:hover {
 }
 
 /* End Chat */
+/* emoij-picker */
+.tooltip {
+    visibility: hidden;
+}
+
+.tooltip.shown {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* end emoij-picker */
