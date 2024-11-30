@@ -1,13 +1,22 @@
 import * as Popper from 'https://cdn.jsdelivr.net/npm/@popperjs/core@^2/dist/esm/index.js'
 
+// fileUploadwidthpreview
+
+const upload = new FileUploadWithPreview.FileUploadWithPreview('upload-img', {
+    multiple: true,
+    maxFileCount: 6
+});
+
 // CLIENT_SEND_MESSAGE
 const formsendData = document.querySelector(".chat .inner-form");
 if (formsendData) {
     formsendData.addEventListener("submit", (e) => {
         e.preventDefault();
         const content = e.target.elements.content.value;
+        const img = upload.cachedFileArray || [];
 
-        if (content) {
+        if (content || img.length > 0) {
+            // gửi content hoặc ảnh lên server
             socket.emit("CLIENT_SEND_MESSAGE", content);
             e.target.elements.content.value = "";
             socket.emit("CLIENT_SEND_TYPING", "hidden");
