@@ -23,11 +23,11 @@ router.post('/create',
     controller.createPost);
 
 router.get('/edit/:id', controller.edit);
-uploadCould.upload,
-    router.patch('/edit/:id',
-        upload.single('thumbnail'),
-        validate.createPost,
-        controller.editPatch);
+
+router.patch('/edit/:id', upload.single('thumbnail'),
+    uploadCould.upload,
+    validate.createPost,
+    controller.editPatch);
 
 router.get('/detail/:id', controller.detail);
 
