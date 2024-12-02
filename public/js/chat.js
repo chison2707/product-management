@@ -67,6 +67,12 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
     body.insertBefore(div, boxTyping);
 
     body.scrollTop = body.scrollHeight;
+
+    // preview image
+    const boxImage = div.querySelector(".inner-images");
+    if (boxImage) {
+        const gallery = new Viewer(boxImage);
+    }
 })
 // END SERVER_RETURN_MESSAGE
 
@@ -153,3 +159,10 @@ if (elementListTyping) {
 
 // End SERVER_RETURN_TYPING
 
+// preview iamge
+const chatBody = document.querySelector(".chat .inner-body");
+
+if (chatBody) {
+    const gallery = new Viewer(chatBody);
+}
+// end preview iamge
