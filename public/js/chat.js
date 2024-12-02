@@ -1,7 +1,6 @@
 import * as Popper from 'https://cdn.jsdelivr.net/npm/@popperjs/core@^2/dist/esm/index.js'
 
 // fileUploadwidthpreview
-
 const upload = new FileUploadWithPreview.FileUploadWithPreview('upload-img', {
     multiple: true,
     maxFileCount: 6
@@ -41,11 +40,11 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
     let htmlContent = "";
     let htmlImages = "";
 
-    if (myId == data.userId) {
+    if (myId == data.user_id) {
         div.classList.add("inner-outgoing");
     } else {
-        div.classList.add("inner-incoming");
         htmlFullName = `<div class="inner-name">${data.fullName}</div>`;
+        div.classList.add("inner-incoming");
     }
     if (data.content) {
         htmlContent = `<div class="inner-content">${data.content}</div>`;
@@ -53,7 +52,9 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
     if (data.images) {
         htmlImages += `<div class="inner-images">`;
         for (const image of data.images) {
-            htmlImages += `<img src="${image}`;
+            htmlImages += `
+            <img src="${image}">
+            `;
         }
         htmlImages += `</div>`;
     }
@@ -65,7 +66,7 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
 
     body.insertBefore(div, boxTyping);
 
-    bodyChat.scrollTop = bodyChat.scrollHeight;
+    body.scrollTop = body.scrollHeight;
 })
 // END SERVER_RETURN_MESSAGE
 
@@ -112,8 +113,6 @@ if (emojiPicker) {
 
     });
 
-    var timeOut;
-
     inputChat.addEventListener("keyup", () => {
         showTyping();
     });
@@ -125,10 +124,9 @@ const elementListTyping = document.querySelector(".chat .inner-list-typing");
 if (elementListTyping) {
     socket.on("SERVER_RETURN_TYPING", (data) => {
         if (data.type == "show") {
-            const exitTyping = elementListTyping.querySelector(`[user-id="${data.userId}"]`);
+            const exitTyping = document.querySelector(`[user-id="${data.userId}"]`);
 
             if (!exitTyping) {
-                const bodyChat = document.querySelector(".chat .inner-body");
                 const boxTyping = document.createElement("div");
                 boxTyping.classList.add("box-typing");
                 boxTyping.setAttribute("user-id", data.userId);
