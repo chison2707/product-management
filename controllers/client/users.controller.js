@@ -2,7 +2,7 @@ const User = require("../../models/user.model");
 
 const usersSocket = require("../../sockets/client/users.socket");
 
-// [GET]/user/infor/edit/:id
+// [GET]/users/not-friend
 module.exports.notFriend = async (req, res) => {
     // socket
     usersSocket(res);
@@ -20,9 +20,28 @@ module.exports.notFriend = async (req, res) => {
         ],
         status: "active",
         deleted: false
-    })
+    }).select("id avatar fullName");
     res.render("client/pages/users/not-friend", {
         pageTitle: "Danh sách người dùng",
+        users: users
+    });
+}
+
+// [GET]/users/request
+module.exports.request = async (req, res) => {
+    // socket
+    usersSocket(res);
+    //end socket
+    const userId = res.locals.user.id;
+    const myUser = await User.findOne({ _id: userId });
+    const requestFriends = myUser.requestFriends;
+    const users = await User.find({
+        _id: { $in: requestFriends },
+        status: "active",
+        deleted: false
+    }).select("id avatar fullName");
+    res.render("client/pages/users/request", {
+        pageTitle: "Lời mời đã gửi",
         users: users
     });
 }
