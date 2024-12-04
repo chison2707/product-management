@@ -30,8 +30,13 @@ block main
                                 ) Xóa
                                 button(
                                     class="btn btn-sm btn-secondary mr-1"
-                                    btn-deleted-friend=user.id
+                                    btn-deleted-friend
                                     disabled
                                 ) Đã xóa
+                                 button(
+                                    class="btn btn-sm btn-primary mr-1"
+                                    btn-accepted-friend
+                                    disabled
+                                ) Đã kết bạn
 block script 
     script(type="module", src="/js/users.js") 
