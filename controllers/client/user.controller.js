@@ -69,6 +69,12 @@ module.exports.loginPost = async (req, res) => {
 
     res.cookie("tokenUser", user.tokenUser);
 
+    await User.updateOne({
+        _id: user.id
+    }, {
+        statusOnline: "online"
+    })
+
     // lưu user_id vào collection carts
     await Cart.updateOne({
         _id: req.cookies.cartId
@@ -83,6 +89,11 @@ module.exports.loginPost = async (req, res) => {
 module.exports.logout = async (req, res) => {
     res.clearCookie("tokenUser");
     res.redirect(`/`);
+    await User.updateOne({
+        _id: res.locals.user.id
+    }, {
+        statusOnline: "offline"
+    })
 }
 
 // [GET]/user/password/forgot
