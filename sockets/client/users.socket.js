@@ -70,7 +70,7 @@ module.exports = async (res) => {
                     $pull: { acceptFriends: myUserId }
                 });
             }
-            // thêm id của B vào requestFriends của A
+            // xóa id của B vào requestFriends của A
             const existUserBinA = await User.findOne({
                 _id: myUserId,
                 requestFriends: userId
@@ -92,6 +92,12 @@ module.exports = async (res) => {
             socket.broadcast.emit("SERVER_RETURN_LENGTH_ACCEPT_FRIEND", {
                 userId: userId,
                 lengthAcceptFriends: lengthAcceptFriends
+            });
+
+            // lấy userId của a để trả về cho b
+            socket.broadcast.emit("SERVER_RETURN_USERID_CANCEL_FRIEND", {
+                userId: userId,
+                userIdA: myUserId
             });
         });
         // từ chối yêu cầu kết bạn
