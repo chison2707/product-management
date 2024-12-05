@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const roomChatSchema = new mongoose.Schema({
     title: String,
-    avatar: String,
     typeRoom: String,
     status: String,
     users: [
@@ -15,7 +14,7 @@ const roomChatSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    deletedAt: date
+    deletedAt: Date
 }, {
     timestamps: true
 });
