@@ -23,6 +23,6 @@ router.patch('/edit/:id',
     uploadCould.upload,
     validate.createPost,
     controller.editPatch);
-
+router.get('/detail/:id', controller.detail);
 
 module.exports = router;

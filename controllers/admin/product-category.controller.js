@@ -115,7 +115,7 @@ module.exports.editPatch = async (req, res) => {
     } catch (error) {
         req.flash('error', `Cập nhật thất bại!`);
     }
-    res.redirect("back");
+    res.redirect(`${systemConfig.prefixAdmin}/products-category`);
 };
 
 // [DELETE] /admin/product-category/delete/:id
@@ -125,4 +125,18 @@ module.exports.deleteItem = async (req, res) => {
     await ProductCategory.deleteOne({ _id: id });
     req.flash('success', 'Xóa danh mục sản phẩm thành công!');
     res.redirect("back");
+}
+
+// [GET] /admin/product-category/detail/:id
+module.exports.detail = async (req, res) => {
+    const id = req.params.id;
+
+    const record = await ProductCategory.findOne({
+        _id: id
+    });
+
+    res.render("admin/pages/product-category/detail", {
+        pageTitle: "Chi tiết danh mục sản phẩm",
+        record: record
+    });
 }

@@ -1,0 +1,28 @@
+extends ../../layouts/default.pug
+
+block main 
+    if(role.permissions.includes("products-category_view"))
+        if record.title
+            h1.mb-4 #{record.title}
+        if record.parent_id
+            div.mb-4 Danh mục cha: <b> #{record.parent_id}</b>
+        if record.thumbnail
+            div.mb-4
+                img(src=record.thumbnail style="width: 100px")
+        if record.status
+            div.mb-4
+                span Trạng thái: 
+                if record.status === "active"
+                    span(class="badge badge-success") Hoạt động
+                else
+                    span(class="badge badge-danger") Dừng hoạt động
+
+        if record.position
+            div.mb-4 Vị trí: b #{record.position}
+
+        if record.description
+            div.mb-4 !{record.description}
+        a(
+            href=`${prefixAdmin}/products-category/edit/${record.id}`
+            class="btn btn-warning"
+        ) Chỉnh sửa
