@@ -57,7 +57,7 @@ module.exports.create = async (req, res) => {
 
 // [POST] /admin/product-category/create
 module.exports.createPost = async (req, res) => {
-    const permissions = res.locals.permissions;
+    const permissions = res.locals.role.permissions;
 
     if (!permissions.includes("products-category_create")) {
         res.status(403).send("Bạn không có quyền thêm mới danh mục sản phẩm");
@@ -117,3 +117,12 @@ module.exports.editPatch = async (req, res) => {
     }
     res.redirect("back");
 };
+
+// [DELETE] /admin/product-category/delete/:id
+module.exports.deleteItem = async (req, res) => {
+    const id = req.params.id;
+
+    await ProductCategory.deleteOne({ _id: id });
+    req.flash('success', 'Xóa danh mục sản phẩm thành công!');
+    res.redirect("back");
+}
