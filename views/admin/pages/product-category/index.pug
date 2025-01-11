@@ -35,5 +35,13 @@ block main
                                 th Hành động
                         tbody 
                             +table-tree(record)
+        form(
+            action=""
+            method="POST"
+            id="form-change-status"
+            data-path=`${prefixAdmin}/products-category/change-status`
+        )                     
     else 
         h1.text-center Bạn không có quyền xem danh mục sản phẩm.
+    block script 
+        script(src="/admin/js/product-category.js") 
