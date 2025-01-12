@@ -2,12 +2,29 @@ const Order = require("../../models/order.model");
 const Product = require("../../models/product.model");
 const Account = require("../../models/account.model");
 const User = require("../../models/user.model");
+const moment = require("moment");
 
 const productHelper = require("../../helpers/products");
 
 // [GET]/admin/order
 module.exports.index = async (req, res) => {
-    const orders = await Order.find({});
+    const startDate = req.query.startDate;
+    const endDate = req.query.endDate;
+
+    // Chuyển đổi ngày từ chuỗi sang định dạng Date
+    const start = startDate ? moment(startDate).startOf("day").toDate() : null;
+    const end = endDate ? moment(endDate).endOf("day").toDate() : null;
+
+    // Tạo điều kiện lọc
+    let filter = {};
+    if (start && end) {
+        filter.createdAt = { $gte: start, $lte: end };
+    } else if (start) {
+        filter.createdAt = { $gte: start };
+    } else if (end) {
+        filter.createdAt = { $lte: end };
+    }
+    const orders = await Order.find(filter);
     for (const order of orders) {
         for (const product of order.products) {
             const productInfo = await Product.findOne({
@@ -41,7 +58,9 @@ module.exports.index = async (req, res) => {
 
     res.render("admin/pages/orders/index", {
         pageTitle: "Danh sách đơn hàng",
-        order: orders
+        order: orders,
+        startDate: start ? moment(start).format("YYYY-MM-DD") : "",
+        endDate: end ? moment(end).format("YYYY-MM-DD") : ""
     });
 }
 
