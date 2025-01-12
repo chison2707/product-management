@@ -11,6 +11,7 @@ router.get('/', controller.index);
 router.get('/create', controller.create);
 router.patch('/change-status/:status/:id', controller.changeStatus);
 router.get('/detail/:id', controller.detail);
+router.delete('/delete/:id', controller.delete);
 
 router.post('/create',
     upload.single('avatar'),

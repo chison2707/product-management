@@ -148,3 +148,14 @@ module.exports.changeStatus = async (req, res) => {
 
     res.redirect("back");
 }
+
+//[PATCH] / admin/accounts/delete/:id
+module.exports.delete = async (req, res) => {
+    const id = req.params.id;
+
+    await Account.deleteOne({ _id: id });
+
+    req.flash('success', 'Xóa tài khoản thành công!');
+
+    res.redirect("back");
+}
