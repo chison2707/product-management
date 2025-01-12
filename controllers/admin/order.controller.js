@@ -5,6 +5,7 @@ const User = require("../../models/user.model");
 
 const productHelper = require("../../helpers/products");
 const filterDatetHelper = require("../../helpers/filterDate");
+const paginationHelper = require("../../helpers/pagination");
 
 // [GET]/admin/order
 module.exports.index = async (req, res) => {
@@ -12,7 +13,21 @@ module.exports.index = async (req, res) => {
     const endDate = req.query.endDate;
 
     const filter = filterDatetHelper.filter(startDate, endDate);
-    const orders = await Order.find(filter);
+
+    // pagination
+    const countProducts = await Order.countDocuments({});
+    let objPagination = paginationHelper(
+        {
+            currentPage: 1,
+            limitItems: 5
+        },
+        req.query,
+        countProducts
+    );
+    // end pagination
+
+    const orders = await Order.find(filter).limit(objPagination.limitItems)
+        .skip(objPagination.skip);
     for (const order of orders) {
         for (const product of order.products) {
             const productInfo = await Product.findOne({
@@ -47,6 +62,7 @@ module.exports.index = async (req, res) => {
     res.render("admin/pages/orders/index", {
         pageTitle: "Danh sách đơn hàng",
         order: orders,
+        pagination: objPagination,
         startDate: startDate,
         endDate: endDate
     });
