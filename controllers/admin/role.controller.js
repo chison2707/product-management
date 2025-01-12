@@ -120,3 +120,19 @@ module.exports.detail = async (req, res) => {
         res.redirect(`${systemConfig.prefixAdmin}/roles`);
     }
 }
+
+//[GET] /admin/roles/delete/:id
+module.exports.delete = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        await Role.deleteOne({ _id: id });
+        req.flash('success', `Xóa thành công!`);
+
+    } catch (error) {
+        req.flash('error', `Xóa thất bại!`);
+    }
+
+    res.redirect(`${systemConfig.prefixAdmin}/roles`);
+
+}
