@@ -63,7 +63,7 @@ module.exports.editPatch = async (req, res) => {
         req.flash('error', `Cập nhật thất bại!`);
     }
 
-    res.redirect("back");
+    res.redirect(`${systemConfig.prefixAdmin}/roles`);
 
 }
 
@@ -98,4 +98,25 @@ module.exports.permissionsPatch = async (req, res) => {
 
     res.redirect("back");
 
+}
+
+//[GET] / admin/detail/edit:id
+module.exports.detail = async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        let find = {
+            _id: id,
+            deleted: false
+        };
+
+        const record = await Role.findOne(find);
+
+        res.render("admin/pages/roles/detail", {
+            pageTitle: "Xem chi tiết nhóm quyền",
+            data: record,
+        });
+    } catch (error) {
+        res.redirect(`${systemConfig.prefixAdmin}/roles`);
+    }
 }

@@ -1,0 +1,25 @@
+extends ../../layouts/default.pug
+
+block main 
+    if(role.permissions.includes("role_view"))
+        if data.title
+            h1.mb-4 #{data.title}
+        if data.description
+            div.mb-4 !{data.description}
+        if data.permissions
+            div.mb-4 <b>Danh sách các quyền được phép truy cập:</b>
+            ul 
+                each permission in data.permissions
+                    li #{permission}
+
+        a.mr-2(
+            href=`${prefixAdmin}/roles/edit/${data.id}`
+            class="btn btn-warning"
+        ) Chỉnh sửa
+        a(
+            href=`${prefixAdmin}/roles/permissions`
+            class="btn btn-warning"
+        ) Chỉnh sửa phân quyền
+
+
+    script(src="/admin/js.product.js") 
