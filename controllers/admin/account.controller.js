@@ -109,3 +109,28 @@ module.exports.editPatch = async (req, res) => {
 
 
 }
+
+//[GET] / admin/accounts/detail/:id
+module.exports.detail = async (req, res) => {
+    const find = {
+        _id: req.params.id,
+        deleted: false,
+    };
+
+    try {
+        const data = await Account.findOne(find);
+
+        const roles = await Role.findOne({
+            _id: data.role_id
+        });
+
+        res.render("admin/pages/accounts/detail", {
+            pageTitle: "Thông tin tài khoản",
+            data: data,
+            roles: roles
+        });
+    } catch (error) {
+        res.redirect(`${systemConfig.prefixAdmin}/accounts`);
+    }
+
+}

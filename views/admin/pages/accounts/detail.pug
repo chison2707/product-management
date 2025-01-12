@@ -1,0 +1,24 @@
+extends ../../layouts/default.pug
+
+block main
+    if(role.permissions.includes("user_view"))
+        .row.mt-4
+            .col-12
+                .card.mb-4.border-0.shadow-sm
+                    .card-header.bg-light.text-center
+                        h5.text-secondary Thông tin tài khoản #{data.fullName}
+                    .card-body.text-center
+                        if data.avatar
+                            img(src=data.avatar, class="rounded-circle mb-3", style="height: 100px;")
+                        if data.fullName
+                            p.text-muted Họ tên: <b> #{data.fullName}</b>
+                        if data.email
+                            p.text-muted Email: <b> #{data.email}</b>
+                        if data.phone
+                            p.text-muted Số điện thoại: <b> #{data.phone}</b>
+                        if role.title
+                            p.text-muted Phân quyền: <b> #{roles.title}</b>
+            a.ml-3(
+                class="btn btn-primary"
+                href=`${prefixAdmin}/accounts/edit/${data.id}`
+            ) Chỉnh sửa
