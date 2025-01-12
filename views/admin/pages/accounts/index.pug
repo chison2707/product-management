@@ -85,3 +85,12 @@ block main
                                                 button-delete
                                                 data-id = item.id
                                             ) Xóa
+
+        form(
+            action=""
+            method="POST"
+            id="form-change-status"
+            data-path=`${prefixAdmin}/accounts/change-status`
+        )
+    block script 
+        script(src="/admin/js/account.js")

@@ -9,6 +9,7 @@ const uploadCould = require("../../middlewares/admin/uploadCloud.middleware");
 
 router.get('/', controller.index);
 router.get('/create', controller.create);
+router.patch('/change-status/:status/:id', controller.changeStatus);
 router.get('/detail/:id', controller.detail);
 
 router.post('/create',
