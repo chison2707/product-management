@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/pagination.pug
 
 block main
     +alert-success(3000)
@@ -8,7 +9,7 @@ block main
 
         .card.mb-3
             .card-header Danh sách
-                .card-body
+            .card-body
                 .row 
                     .col-8
                     .col-4.text-right
@@ -57,6 +58,7 @@ block main
                             else 
                                 tr
                                     td(colspan="4") Không tìm thấy dữ liệu.
+        +pagination(pagination)
         form(
             action=""
             method="POST"

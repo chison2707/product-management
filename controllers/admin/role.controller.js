@@ -1,5 +1,6 @@
 const Role = require("../../models/role.model");
 const systemConfig = require("../../config/system");
+const paginationHelper = require("../../helpers/pagination");
 
 //[GET] / admin/roles
 module.exports.index = async (req, res) => {
@@ -7,10 +8,23 @@ module.exports.index = async (req, res) => {
         deleted: false
     };
 
-    const records = await Role.find(find)
+    // pagination
+    const countProducts = await Role.countDocuments(find);
+    let objPagination = paginationHelper(
+        {
+            currentPage: 1,
+            limitItems: 5
+        },
+        req.query,
+        countProducts
+    );
+    // end pagination
+
+    const records = await Role.find(find).limit(objPagination.limitItems).skip(objPagination.skip);
     res.render("admin/pages/roles/index", {
         pageTitle: "Nhóm quyền",
-        records: records
+        records: records,
+        pagination: objPagination
     });
 }
 
